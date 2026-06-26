@@ -85,6 +85,7 @@ function startQuiz() {
 
 function showQuestion() {
   const item = questions[currentQuestion];
+  const shuffledAnswers = shuffleAnswers(item.answers);
 
   locked = false;
   progress.textContent = `Frage ${currentQuestion + 1} von ${questions.length}`;
@@ -94,7 +95,7 @@ function showQuestion() {
   feedback.textContent = "";
   answers.innerHTML = "";
 
-  item.answers.forEach((answer) => {
+  shuffledAnswers.forEach((answer) => {
     const button = document.createElement("button");
     button.className = "answer";
     button.type = "button";
@@ -159,4 +160,8 @@ function showResult() {
   resultTitle.textContent = "Deine Punktzahl";
   resultCopy.textContent = "Noch nicht ganz. Für den Code brauchst du die perfekte Runde.";
   code.classList.add("hidden");
+}
+
+function shuffleAnswers(answerList) {
+  return [...answerList].sort(() => Math.random() - 0.5);
 }

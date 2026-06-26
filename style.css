@@ -75,14 +75,14 @@ body::before {
 }
 
 .screen::after {
-  content: "021";
+  content: "";
   position: absolute;
-  right: clamp(14px, 5vw, 54px);
-  bottom: clamp(12px, 5vw, 46px);
-  color: rgba(255, 255, 255, 0.055);
-  font-size: clamp(120px, 24vw, 230px);
-  font-weight: 950;
-  line-height: 0.78;
+  width: 360px;
+  height: 360px;
+  left: -190px;
+  bottom: -190px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 194, 255, 0.22), transparent 70%);
   pointer-events: none;
 }
 

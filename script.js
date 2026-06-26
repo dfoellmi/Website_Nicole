@@ -1,28 +1,53 @@
 const questions = [
   {
-    text: "Wie heisst die Person, für die diese Seite gemacht wurde?",
-    answers: ["Nicole Sterki", "Nadine Stark", "Nora Steiner"],
-    correct: "Nicole Sterki"
+    text: "Welches Land hat die längste Küstenlinie der Welt?",
+    answers: ["Kanada", "Russland", "Australien"],
+    correct: "Kanada"
   },
   {
-    text: "Welche Domain passt hier am besten?",
-    answers: ["nsterki.ch", "irgendwas.ch", "testseite.ch"],
-    correct: "nsterki.ch"
+    text: "In welchem Jahr fiel die Berliner Mauer?",
+    answers: ["1987", "1989", "1991"],
+    correct: "1989"
   },
   {
-    text: "Was braucht man, um am Ende weiterzukommen?",
-    answers: ["Den geheimen Code", "Ein Passwort von Google", "Eine Rechnung"],
-    correct: "Den geheimen Code"
+    text: "Welche Währung hatte Italien vor dem Euro?",
+    answers: ["Lira", "Peseta", "Drachme"],
+    correct: "Lira"
   },
   {
-    text: "Welche Zahl taucht heute nicht zufällig auf?",
-    answers: ["021", "404", "999"],
-    correct: "021"
+    text: "Welcher Fluss fliesst durch Budapest?",
+    answers: ["Donau", "Moldau", "Rhein"],
+    correct: "Donau"
   },
   {
-    text: "Wer darf den Code jetzt sehen?",
-    answers: ["Nicole", "Alle ausser Nicole", "Niemand"],
-    correct: "Nicole"
+    text: "Welches Land hat die meisten Inseln der Welt?",
+    answers: ["Schweden", "Indonesien", "Kanada"],
+    correct: "Schweden"
+  },
+  {
+    text: "Welche Stadt ist die Hauptstadt von Australien?",
+    answers: ["Canberra", "Sydney", "Melbourne"],
+    correct: "Canberra"
+  },
+  {
+    text: "Welche Stadt war früher unter dem Namen Konstantinopel bekannt?",
+    answers: ["Istanbul", "Athen", "Sofia"],
+    correct: "Istanbul"
+  },
+  {
+    text: "Welches Land hat als einziges eine nicht rechteckige Nationalflagge?",
+    answers: ["Nepal", "Bhutan", "Sri Lanka"],
+    correct: "Nepal"
+  },
+  {
+    text: "Welche Stadt liegt am Bosporus?",
+    answers: ["Istanbul", "Bukarest", "Belgrad"],
+    correct: "Istanbul"
+  },
+  {
+    text: "Welches Land hat mit Lesotho ein vollständig umschlossenes Land in seinem Inneren?",
+    answers: ["Südafrika", "Namibia", "Botswana"],
+    correct: "Südafrika"
   }
 ];
 
@@ -69,7 +94,7 @@ function checkAnswer(answer) {
   const item = questions[currentQuestion];
 
   if (answer !== item.correct) {
-    feedback.textContent = "Fast. Probier es nochmal, Nicole.";
+    feedback.textContent = "Nope. Kurz sammeln und nochmal.";
     return;
   }
 

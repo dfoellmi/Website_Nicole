@@ -4,47 +4,61 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nicole Sterki</title>
-  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="75" font-size="78">♡</text></svg>'>
+  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="75" font-size="78">✦</text></svg>'>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <main class="app">
     <section class="screen intro" id="intro">
-      <p class="kicker">nsterki.ch</p>
-      <h1>Hallo Nicole</h1>
-      <p class="lead">
-        Das ist deine eigene kleine Website.<br>
-        Nur für dich.
-      </p>
-      <p class="copy">
-        Vor dir liegen 10 Fragen. Manche sind einfach, manche vielleicht ein bisschen gemein.
-        Wenn du alles richtig beantwortest, bekommst du am Ende einen dreistelligen Code.
-      </p>
-      <p class="copy">Viel Glück.</p>
-      <button id="start-button" type="button">Wir gehen rein!</button>
+      <div class="glass">
+        <p class="kicker">nsterki.ch</p>
+        <h1>Hallo Nicole</h1>
+        <p class="lead">
+          Das ist deine eigene kleine Website.<br>
+          Nur für dich.
+        </p>
+        <p class="copy">
+          Vor dir liegen 10 Fragen. Manche sind einfach, manche vielleicht ein bisschen gemein.
+          Wenn du alles richtig beantwortest, bekommst du am Ende einen dreistelligen Code.
+        </p>
+        <p class="copy">Viel Glück.</p>
+        <button id="start-button" type="button">Wir gehen rein!</button>
+      </div>
     </section>
 
     <section class="screen quiz hidden" id="quiz" aria-live="polite">
-      <div class="status">
-        <span id="progress">Frage 1 von 10</span>
-        <span>Code gesperrt</span>
-      </div>
+      <div class="glass">
+        <div class="status">
+          <span id="progress">Frage 1 von 10</span>
+          <span id="score-preview">0 richtig</span>
+        </div>
 
-      <h2 id="question">Frage</h2>
-      <div class="answers" id="answers"></div>
-      <p class="feedback" id="feedback"></p>
+        <div class="progress-track" aria-hidden="true">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
+        <h2 id="question">Frage</h2>
+        <div class="answers" id="answers"></div>
+        <p class="feedback" id="feedback"></p>
+      </div>
     </section>
 
     <section class="screen result hidden" id="result">
-      <p class="kicker">freigeschaltet</p>
-      <h2>Der Code lautet</h2>
-      <div class="code" aria-label="Code 021">
-        <span>0</span>
-        <span>2</span>
-        <span>1</span>
+      <div class="glass">
+        <p class="kicker" id="result-kicker">Resultat</p>
+        <h2 id="result-title">Deine Punktzahl</h2>
+        <div class="score-card">
+          <span id="final-score">0</span>
+          <small>/ 10 richtig</small>
+        </div>
+        <p class="copy" id="result-copy">Noch nicht ganz. Versuch es nochmal.</p>
+        <div class="code hidden" id="code" aria-label="Code 021">
+          <span>0</span>
+          <span>2</span>
+          <span>1</span>
+        </div>
+        <button id="again-button" type="button">Nochmal spielen</button>
       </div>
-      <p class="copy">Gut gemacht, Nicole. Diesen Code solltest du dir merken.</p>
-      <button id="again-button" type="button">Nochmal spielen</button>
     </section>
   </main>
 

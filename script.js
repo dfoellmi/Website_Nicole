@@ -52,20 +52,31 @@ const questions = [
 ];
 
 let currentQuestion = 0;
+let score = 0;
+let locked = false;
 
 const intro = document.getElementById("intro");
 const quiz = document.getElementById("quiz");
 const result = document.getElementById("result");
 const progress = document.getElementById("progress");
+const progressBar = document.getElementById("progress-bar");
+const scorePreview = document.getElementById("score-preview");
 const question = document.getElementById("question");
 const answers = document.getElementById("answers");
 const feedback = document.getElementById("feedback");
+const finalScore = document.getElementById("final-score");
+const resultKicker = document.getElementById("result-kicker");
+const resultTitle = document.getElementById("result-title");
+const resultCopy = document.getElementById("result-copy");
+const code = document.getElementById("code");
 
 document.getElementById("start-button").addEventListener("click", startQuiz);
 document.getElementById("again-button").addEventListener("click", startQuiz);
 
 function startQuiz() {
   currentQuestion = 0;
+  score = 0;
+  locked = false;
   intro.classList.add("hidden");
   result.classList.add("hidden");
   quiz.classList.remove("hidden");
@@ -75,7 +86,10 @@ function startQuiz() {
 function showQuestion() {
   const item = questions[currentQuestion];
 
+  locked = false;
   progress.textContent = `Frage ${currentQuestion + 1} von ${questions.length}`;
+  scorePreview.textContent = `${score} richtig`;
+  progressBar.style.width = `${(currentQuestion / questions.length) * 100}%`;
   question.textContent = item.text;
   feedback.textContent = "";
   answers.innerHTML = "";
@@ -85,26 +99,64 @@ function showQuestion() {
     button.className = "answer";
     button.type = "button";
     button.textContent = answer;
-    button.addEventListener("click", () => checkAnswer(answer));
+    button.addEventListener("click", () => checkAnswer(answer, button));
     answers.appendChild(button);
   });
 }
 
-function checkAnswer(answer) {
+function checkAnswer(answer, selectedButton) {
+  if (locked) {
+    return;
+  }
+
+  locked = true;
   const item = questions[currentQuestion];
+  const isCorrect = answer === item.correct;
 
-  if (answer !== item.correct) {
-    feedback.textContent = "Nope. Kurz sammeln und nochmal.";
+  if (isCorrect) {
+    score += 1;
+    selectedButton.classList.add("correct");
+    feedback.textContent = "Richtig.";
+  } else {
+    selectedButton.classList.add("wrong");
+    feedback.textContent = `Nicht ganz. Richtig wäre: ${item.correct}.`;
+    [...answers.children].forEach((button) => {
+      if (button.textContent === item.correct) {
+        button.classList.add("correct");
+      }
+    });
+  }
+
+  scorePreview.textContent = `${score} richtig`;
+
+  window.setTimeout(() => {
+    currentQuestion += 1;
+
+    if (currentQuestion === questions.length) {
+      showResult();
+      return;
+    }
+
+    showQuestion();
+  }, 1050);
+}
+
+function showResult() {
+  quiz.classList.add("hidden");
+  result.classList.remove("hidden");
+  progressBar.style.width = "100%";
+  finalScore.textContent = String(score);
+
+  if (score === questions.length) {
+    resultKicker.textContent = "freigeschaltet";
+    resultTitle.textContent = "Perfekte Runde";
+    resultCopy.textContent = "10 von 10. Der Code gehört dir.";
+    code.classList.remove("hidden");
     return;
   }
 
-  currentQuestion += 1;
-
-  if (currentQuestion === questions.length) {
-    quiz.classList.add("hidden");
-    result.classList.remove("hidden");
-    return;
-  }
-
-  showQuestion();
+  resultKicker.textContent = "Resultat";
+  resultTitle.textContent = "Deine Punktzahl";
+  resultCopy.textContent = "Noch nicht ganz. Für den Code brauchst du die perfekte Runde.";
+  code.classList.add("hidden");
 }
